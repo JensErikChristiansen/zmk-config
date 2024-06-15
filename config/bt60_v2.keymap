@@ -10,6 +10,12 @@
 //#define ALL_1U
 //#define HHKB
 
+#define DEFAULT 0
+#define DEFAULT_RAISE 1
+#define GAME 2
+#define GAME_RAISE 3
+#define MISC 4
+
 / {
   chosen {
   #ifdef ANSI
@@ -28,49 +34,117 @@
   keymap {
     compatible = "zmk,keymap";
     #ifdef JENS
-    default_layer {
+
+    DEFAULT {
       bindings = <
-        // ------------------------------------------------------------------------------------------
-        // | ESC     |  1       |     2  |   3     |  4       |    5      |  6        |  7         |  8         |    9       |    0       |     -         |    =          |    BKSP     |
-             &kp ESC   &kp N1     &kp N2   &kp N3      &kp N4     &kp N5     &kp N6       &kp N7      &kp  N8      &kp  N9      &kp  N0       &kp MINUS      &kp EQUAL       &kp BSPC
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        // |        ESC        |        1        |        2        |        3        |        4        |        5        |        6        |        7        |        8        |        9        |        0        |        -        |       +=        |            BKSP           |
+                  &kp ESC            &kp N1            &kp N2            &kp N3             &kp N4            &kp N5            &kp N6            &kp N7           &kp  N8           &kp  N9           &kp  N0          &kp MINUS         &kp EQUAL              &kp BSPC
 
-        // | TAB        |  Q      |  W       |  E      |  R       |  T       |  Y       |  U      |  I       |  O      |  P       |  [           |     ]        |       \     |
-              &kp TAB      &kp Q     &kp W      &kp E     &kp R      &kp T      &kp Y      &kp U     &kp  I    &kp  O     &kp  P      &kp LBKT     &kp RBKT         &kp BSLH
+        // |             TAB             |        Q        |        W        |        E        |        R        |        T        |        Y        |        U        |        I        |        O        |        P        |        [        |        ]        |        \        |
+                       &kp TAB                  &kp Q             &kp W             &kp  E            &kp R             &kp T             &kp Y             &kp U            &kp  I            &kp  O            &kp  P           &kp LBKT          &kp RBKT           &kp BSLH
 
-        // | CAPS       |  A       |  S      |  D       |  F       |  G         |  H       |  J       |  K        |  L        |  ;          |  '        |     ENTER    |
-              &kp CAPS     &kp A      &kp S     &kp D       &kp F      &kp G       &kp H      &kp J      &kp  K      &kp  L      &kp SEMI      &kp SQT        &kp RET
+        // |              CAPS             |        A        |        S        |        D        |        F        |        G        |        H        |        J        |        K        |        L        |        ;        |        '        |              ENTER              |
+                        &kp CAPS                  &kp A             &kp S             &kp D             &kp F             &kp G             &kp H             &kp J             &kp  K           &kp  L            &kp SEMI           &kp SQT                  &kp RET
 
-        // |  SHIFT           |  Z      |  X       |  C       |  V        |  B        |  N        |  M         |  ,            |     .       |    /            |      SHIFT     |
-                &kp LSHFT      &kp Z       &kp X      &kp C      &kp V       &kp B       &kp N       &kp M        &kp COMMA       &kp DOT         &kp FSLH          &kp RSHFT
+        // |                 SHIFT                 |        Z        |        X        |        C        |        V        |        B        |        N        |        M        |        ,        |        .        |        /        |                   SHIFT                   |
+                           &kp LSHFT                      &kp Z             &kp X             &kp C            &kp V             &kp B              &kp N             &kp M           &kp COMMA          &kp DOT           &kp FSLH                     &kp RSHFT
 
-        // |  CTRL           |  WIN          |  ALT          |                SPACE                    |    ALT     |       1       |       CTRL      |       FN        |
-                &kp LCTRL        &kp LGUI        &kp LALT                &lt 1 SPACE                      &kp RALT      &kp GRAVE        &kp RCTRL           &mo 1
-        // ------------------------------------------------------------------------------------------
+        // |          CTRL         |          WIN          |          ALT          |                                                      SPACE                                                      |        ALT        |        WIN        |        CTRL        |       FN       |
+                  &kp LCTRL                &kp LGUI                &kp LALT                                                      &lt DEFAULT_RAISE SPACE                                                   &kp RALT            &kp GRAVE           &kp RCTRL           &mo MISC
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       >;
       sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
-    raise {
+
+    DEFAULT_RAISE {
       bindings = <
-        // ------------------------------------------------------------------------------------------
-        // |    GRAVE   |    F1      |   F2      |    F3     |   F4    |    F5      |   F6      |    F7     |   F8    |    F9      |   F10       |    F11    |      F12    |        BKSP     |
-              &kp GRAVE     &kp F1       &kp F2     &kp F3      &kp F4     &kp F5       &kp F6      &kp F7     &kp F8      &kp F9      &kp F10      &kp F11       &kp F12          &kp DEL
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        // |        ESC        |        1        |        2        |        3        |        4        |        5        |        6        |        7        |        8        |        9        |        0        |        -        |       +=        |            BKSP           |
+                 &kp GRAVE            &kp F1            &kp F2           &kp F3            &kp F4           &kp F5             &kp F6            &kp F7           &kp F8            &kp F9            &kp F10            &kp F11           &kp F12                &kp DEL
 
-        // |    TAB      |      Q     |     W       |     E    |     R     |         T          |         Y          |       U     |      I     |      O       |       P       |     [     |    ]      |          \           |
-              &trans         &trans       &kp HOME    &kp UP      &kp END      &rgb_ug RGB_HUI     &rgb_ug RGB_HUD       &kp HOME      &kp UP       &kp END         &kp PSCRN      &trans      &trans       &rgb_ug RGB_TOG
+        // |             TAB             |        Q        |        W        |        E        |        R        |        T        |        Y        |        U        |        I        |        O        |        P        |        [        |        ]        |        \        |
+                       &trans                  &trans           &kp HOME           &kp UP            &kp END           &trans             &trans           &kp HOME           &kp UP           &kp END          &kp PSCRN           &trans           &trans             &trans
 
-        // |    CAPS  |   A      |     S      |       D       |       F       |        G            |           H         |     J        |      K      |       L     |        ;     |      '       |       ENTER       |
-              &trans     &trans     &kp LEFT      &kp DOWN        &kp RIGHT       &rgb_ug RGB_BRI        &rgb_ug RGB_BRD      &kp LEFT      &kp DOWN      &kp RIGHT       &kp HOME     &kp PG_UP       &bootloader
+        // |              CAPS             |        A        |        S        |        D        |        F        |        G        |        H        |        J        |        K        |        L        |        ;        |        '        |              ENTER              |
+                         &trans                  &trans            &kp LEFT          &kp DOWN         &kp RIGHT         &kp PG_UP         &kp PG_UP         &kp LEFT          &kp DOWN          &kp RIGHT          &trans            &trans                     &trans
 
-        // |    SHIFT    |      Z     |    X     |     C     |     V       |     B       |     N    |        M     |      ,     |       .        |        /       |     SHIFT    |
-                &trans        &trans      &trans      &trans    &bl BL_INC    &bl BL_DEC     &trans     &kp C_MUTE      &trans      &kp PG_DN       &kp C_VOL_UP      &sys_reset
-                  
-        // |      BT_PRV      |     BT_NXT      |       ALT      |                                 SPACE                             |       ALT        |          1         |        CTRL        |        FN      |
-                &bt BT_PRV       &bt BT_NXT         &bt BT_CLR                                     &trans                                &trans              &kp C_VOL_DN          &sys_reset           &trans
-        // ------------------------------------------------------------------------------------------
+        // |                 SHIFT                 |        Z        |        X        |        C        |        V        |        B        |        N        |        M        |        ,        |        .        |        /        |                   SHIFT                   |
+                             &trans                      &trans             &trans            &trans            &trans          &kp PG_DN         &kp PG_DN          &trans             &trans           &trans            &trans                          &trans
+
+        // |          CTRL         |          WIN          |          ALT          |                                                      SPACE                                                      |        ALT        |        WIN        |        CTRL        |       FN       |
+                     &trans                  &trans                  &trans                                                               &trans                                                            &trans               &trans              &trans             &trans
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       >;
       sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
-    // #ifdef ANSI
+
+    GAME {
+      bindings = <
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        // |        ESC        |        1        |        2        |        3        |        4        |        5        |        6        |        7        |        8        |        9        |        0        |        -        |       +=        |            BKSP           |
+                  &kp ESC             &kp N1           &kp N2            &kp N3             &kp N4           &kp N5            &kp N6             &kp N7           &kp  N8           &kp  N9           &kp  N0          &kp MINUS         &kp EQUAL               &kp BSPC
+
+        // |             TAB             |        Q        |        W        |        E        |        R        |        T        |        Y        |        U        |        I        |        O        |        P        |        [        |        ]        |        \        |
+                       &kp TAB                  &kp Q             &kp W             &kp E             &kp R             &kp T             &kp Y             &kp U             &kp I             &kp O             &kp P           &kp LBKT          &kp RBKT           &kp BSLH
+
+        // |              CAPS             |        A        |        S        |        D        |        F        |        G        |        H        |        J        |        K        |        L        |        ;        |        '        |              ENTER              |
+                  &lt GAME_RAISE CAPS             &kp A             &kp S             &kp D             &kp F             &kp G             &kp H             &kp J            &kp  K            &kp  L            &kp SEMI          &kp SQT                   &kp RET
+
+        // |                 SHIFT                 |        Z        |        X        |        C        |        V        |        B        |        N        |        M        |        ,        |        .        |        /        |                   SHIFT                   |
+                           &kp LSHFT                      &kp Z             &kp X             &kp C             &kp V             &kp B             &kp N             &kp M           &kp COMMA          &kp DOT           &kp FSLH                      &kp RSHFT
+
+        // |          CTRL         |          WIN          |          ALT          |                                                      SPACE                                                      |        ALT        |        WIN        |        CTRL        |       FN       |
+                   &kp LCTRL               &kp LGUI                &kp LALT                                                             &kp SPACE                                                          &kp RALT            &kp GRAVE           &kp RCTRL            &trans
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      >;
+      sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+    };
+
+    GAME_RAISE {
+      bindings = <
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        // |        ESC        |        1        |        2        |        3        |        4        |        5        |        6        |        7        |        8        |        9        |        0        |        -        |       +=        |            BKSP           |
+                 &kp GRAVE            &kp F1            &kp F2           &kp F3            &kp F4           &kp F5             &kp F6            &kp F7           &kp F8            &kp F9            &kp F10            &kp F11           &kp F12                &kp DEL
+
+        // |             TAB             |        Q        |        W        |        E        |        R        |        T        |        Y        |        U        |        I        |        O        |        P        |        [        |        ]        |        \        |
+                       &kp TAB                  &kp Q            &kp UP            &kp RET            &kp R             &kp T             &kp Y             &kp U            &kp I             &kp O              &kp P             &kp LBKT         &kp RBKT           &kp BSLH
+
+        // |              CAPS             |        A        |        S        |        D        |        F        |        G        |        H        |        J        |        K        |        L        |        ;        |        '        |              ENTER              |
+                     &mo GAME_RAISE              &kp LEFT         &kp DOWN         &kp RIGHT            &kp F             &kp G             &kp H             &kp J            &kp  K            &kp  L            &kp SEMI          &kp SQT                   &kp RET
+
+        // |                 SHIFT                 |        Z        |        X        |        C        |        V        |        B        |        N        |        M        |        ,        |        .        |        /        |                   SHIFT                   |
+                           &kp LSHFT                      &kp Z             &kp X             &kp C             &kp V             &kp B             &kp N             &kp M           &kp COMMA          &kp DOT           &kp FSLH                      &kp RSHFT
+
+        // |          CTRL         |          WIN          |          ALT          |                                                      SPACE                                                      |        ALT        |        WIN        |        CTRL        |       FN       |
+                   &kp LCTRL               &kp LGUI                &kp LALT                                                             &kp SPACE                                                          &kp RALT            &kp GRAVE           &kp RCTRL            &trans
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      >;
+      sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+    };
+
+    MISC {
+      bindings = <
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        // |        ESC        |        1        |        2        |        3        |        4        |        5        |        6        |        7        |        8        |        9        |        0        |        -        |       +=        |            BKSP           |
+                  &kp ESC         &to DEFAULT         &to GAME          &trans            &trans            &trans            &trans            &trans            &trans            &trans            &trans            &trans            &trans                 &trans
+
+        // |             TAB             |        Q        |        W        |        E        |        R        |        T        |        Y        |        U        |        I        |        O        |        P        |        [        |        ]        |        \        |
+                      &bt BT_CLR            &bt BT_SEL 0       &bt BT_SEL 1      &bt BT_SEL 2      &bt BT_SEL 3     &bt BT_SEL 4       &bt BT_SEL 5         &trans            &trans            &trans            &trans       &rgb_ug RGB_BRI   &rgb_ug RGB_BRD   &rgb_ug RGB_TOG
+
+        // |              CAPS             |        A        |        S        |        D        |        F        |        G        |        H        |        J        |        K        |        L        |        ;        |        '        |              ENTER              |
+                         &trans                  &trans            &trans            &trans            &trans            &trans            &trans            &trans            &trans            &trans            &trans            &trans                     &trans
+
+        // |                 SHIFT                 |        Z        |        X        |        C        |        V        |        B        |        N        |        M        |        ,        |        .        |        /        |                   SHIFT                   |
+                            &trans                      &trans             &trans           &trans            &trans            &trans            &trans          &kp C_MUTE          &trans            &trans         &kp C_VOL_UP                       &trans
+
+        // |          CTRL         |          WIN          |          ALT          |                                                      SPACE                                                      |        ALT        |        WIN        |        CTRL        |       FN       |
+                  &bootloader                &trans                &sys_reset                                                             &trans                                                             &trans           &kp C_VOL_DN           &trans             &trans
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      >;
+      sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+    };
+
     #elif defined(ANSI)
     default_layer {
         // ------------------------------------------------------------------------------------------
