@@ -20,6 +20,10 @@
 //  tapping-term-ms = <1000>;
 //};
 
+&soft_off {
+  hold-time-ms = <2000>; // Only turn off it the key is held for 5 seconds or longer.
+};
+
 / {
   behaviors {
     bootload_td: tap_dance_0 {
@@ -159,7 +163,7 @@
                             &trans                      &trans             &trans           &trans            &trans            &trans            &trans          &kp C_MUTE          &trans            &trans         &kp C_VOL_UP                       &trans
 
         // |          CTRL         |          WIN          |          ALT          |                                                      SPACE                                                      |        ALT        |        WIN        |        CTRL        |       FN       |
-                 &bootload_td               &trans                 &sys_reset                                                             &trans                                                             &trans           &kp C_VOL_DN           &trans             &trans
+                 &bootload_td              &soft_off               &sys_reset                                                             &trans                                                             &trans           &kp C_VOL_DN           &trans             &trans
         // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       >;
       sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
