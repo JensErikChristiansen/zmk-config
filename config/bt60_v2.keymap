@@ -21,6 +21,15 @@
 //};
 
 / {
+  behaviors {
+    bootload_td: tap_dance_0 {
+      compatible = "zmk,behavior-tap-dance";
+      #binding-cells = <0>;
+      tapping-term-ms = <200>;
+      bindings = <&none>, <&bootloader>;
+    };
+  };
+
   macros {
     ZMK_MACRO(caps_macro,
       tap-ms = <200>;
@@ -150,7 +159,7 @@
                             &trans                      &trans             &trans           &trans            &trans            &trans            &trans          &kp C_MUTE          &trans            &trans         &kp C_VOL_UP                       &trans
 
         // |          CTRL         |          WIN          |          ALT          |                                                      SPACE                                                      |        ALT        |        WIN        |        CTRL        |       FN       |
-                  &bootloader                &trans                &sys_reset                                                             &trans                                                             &trans           &kp C_VOL_DN           &trans             &trans
+                 &bootload_td               &trans                 &sys_reset                                                             &trans                                                             &trans           &kp C_VOL_DN           &trans             &trans
         // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       >;
       sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
